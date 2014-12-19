@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	id="com.affinity.cordova.adcolony"
+	version="0.9.0">
+
+	<name>AdColony</name>
+	<description>Cordova/PhoneGap Plugin for AdColony</description>
+	<author>Brant Watrous</author>
+	<license>MIT</license>
+
+	<keywords>adcolony,affinity,ad,admob,iad,mopub,audience</keywords>
+	<repo>https://github.com/gabecoyne/cordova-adcolony-plugin.git</repo>
+	<issue>https://github.com/gabecoyne/cordova-adcolony-plugin/issues</issue>
+
+	<engines>
+		<engine name="cordova" version=">=3.0" />
+	</engines>
+
+	<js-module src="www/AdColony.js" name="AdColony">
+		<clobbers target="window.AdColony" />
+	</js-module>
+
+	<!-- android -->
+	<platform name="android">
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="AdColony">
+				<param name="android-package" value="com.affinity.cordova.adcolony.AdColonyPlugin"/>
+			</feature>
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.INTERNET"/>
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+		</config-file>
+
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.jirbo.adcolony.AdColonyOverlay" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+			<activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.jirbo.adcolony.AdColonyFullscreen" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+			<activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.jirbo.adcolony.AdColonyBrowser" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+		</config-file>
+
+		<source-file src="src/android/AdColonyPlugin.java" target-dir="src/com/affinity/cordova/adcolony" />
+		<source-file src="src/android/adcolony.jar" target-dir="libs" />
+	</platform>
+
+	<!-- ios -->
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+			<feature name="AdColony">
+				<param name="ios-package" value="AdColonyPlugin" />
+			</feature>
+		</config-file>
+
+		<header-file src="src/ios/AdColonyPlugin.h" />
+		<source-file src="src/ios/AdColonyPlugin.m" />
+
+		<framework src="src/ios/AdColony.framework" custom="true"/>
+		<framework src="AdSupport.framework" />
+		<framework src="CoreGraphics.framework" />
+		<framework src="CoreMedia.framework" />
+		<framework src="CoreTelephony.framework" />
+		<framework src="EventKit.framework" />
+		<framework src="EventKitUI.framework"/>
+		<framework src="Foundation.framework" />
+		<framework src="libz.1.2.5.dylib" />
+		<framework src="MediaPlayer.framework" />
+		<framework src="MessageUI.framework" />
+		<framework src="QuartzCore.framework" />
+		<framework src="Social.framework" weak="true"/>
+		<framework src="StoreKit.framework"/>
+		<framework src="SystemConfiguration.framework" />
+		<framework src="UIKit.framework" />
+	</platform>
+
+</plugin>

@@ -1,0 +1,28 @@
+{
+    "version": "0.9.0",
+    "name": "com.affinity.cordova.adcolony",
+    "cordova_name": "AdColony",
+    "description": "Cordova/PhoneGap Plugin for AdColony",
+    "license": "MIT",
+    "repo": "https://github.com/gabecoyne/cordova-adcolony-plugin.git",
+    "issue": "https://github.com/gabecoyne/cordova-adcolony-plugin/issues",
+    "keywords": [
+        "affinity",
+        "ad",
+        "adcolony",
+        "admob",
+        "iad",
+        "mopub",
+        "audience"
+    ],
+    "platforms": [
+        "android",
+        "ios"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.5"
+        }
+    ]
+}
