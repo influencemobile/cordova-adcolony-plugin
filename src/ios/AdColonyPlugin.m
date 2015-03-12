@@ -38,7 +38,7 @@
 {
     if (self.hasInitialized) return;
 
-    [self.commandDelegate runInBackground:^{
+//     [self.commandDelegate runInBackground:^{
         NSString *appId = [command.arguments objectAtIndex:0];
         NSArray *zoneIds = [command.arguments objectAtIndex:1];
         NSDictionary *options = [command.arguments objectAtIndex:2];
@@ -55,7 +55,7 @@
         self.hasInitialized = YES;
 
         [self sendPluginOKToCallbackId:command.callbackId];
-    }];
+//     }];
 }
 
 /**
