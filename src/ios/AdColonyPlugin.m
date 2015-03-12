@@ -45,7 +45,7 @@
 
         BOOL debug = NO;
         if (options && [options isKindOfClass:[NSDictionary class]]) {
-            [AdColony setOptions:options];
+//             [AdColony setOptions:options];
             [AdColony setCustomID:[options objectForKey:@"customId"]];
             debug = [self toBool:[options objectForKey:@"debug"]];
         }
