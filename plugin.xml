@@ -15,7 +15,7 @@
 	<issue>https://github.com/gabecoyne/cordova-adcolony-plugin/issues</issue>
 
 	<engines>
-		<engine name="cordova" version=">=3.0" />
+		<engine name="cordova" version=">=3.5" />
 	</engines>
 
 	<js-module src="www/AdColony.js" name="AdColony">
