@@ -6,6 +6,10 @@ Compatible with:
 
 * Cordova CLI, v3.5+
 
+## NOTE: ##
+
+The repo location has changed.  Set your remote to git@github.com:affinityis/cordova-adcolony-plugin.git
+
 ## How to use? ##
 
 If using with Cordova CLI:

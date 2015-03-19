@@ -82,6 +82,7 @@
         [self sendPluginErrorToCallbackId:command.callbackId message:@"Ad currently playing"];
     } else {
         NSString *zoneId = [command.arguments objectAtIndex:0];
+        // TODO: Make pre/post popups optional
         [AdColony playVideoAdForZone:zoneId withDelegate:self withV4VCPrePopup:YES andV4VCPostPopup:YES];
         self.videoAdCallbackId = command.callbackId;
     }
