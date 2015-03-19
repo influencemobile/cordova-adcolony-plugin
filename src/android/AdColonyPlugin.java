@@ -79,8 +79,8 @@ public class AdColonyPlugin extends CordovaPlugin implements AdColonyAdListener,
 			} else {
 				return false;
 			}
-		} catch (JSONException exception) {
-			callbackContext.error(exception.getMessage());
+		} catch (JSONException e) {
+			callbackContext.error(e.getMessage());
 			return false;
 		}
 	}
@@ -126,17 +126,17 @@ public class AdColonyPlugin extends CordovaPlugin implements AdColonyAdListener,
 
 	private void execInitialize(JSONArray inputs, CallbackContext callbackContext) throws JSONException {
 		String optionString = "";
-		try {
-			JSONObject options = inputs.getJSONObject(2);
-			String deviceId = options.getString("deviceId");
-			String customId = options.getString("customId");
-			if (deviceId != null) AdColony.setDeviceID( deviceId );
-			if (customId != null) AdColony.setCustomID( customId );
-			optionString = options.getString("optionString");
-		}
-		catch (JSONException exception) {
+		// try {
+		JSONObject options = inputs.getJSONObject(2);
+		String deviceId = options.getString("deviceId");
+		String customId = options.getString("customId");
+		if (deviceId != null) AdColony.setDeviceID( deviceId );
+		if (customId != null) AdColony.setCustomID( customId );
+		optionString = options.getString("optionString");
+		// }
+		// catch (JSONException exception) {
 			// Do nothing
-		}
+		// }
 		String appId = inputs.getString(0);
 		String[] zoneIds = toStringArray(inputs.getJSONArray(1));
 		AdColony.configure( this.cordova.getActivity(), optionString, appId, zoneIds );
@@ -195,11 +195,27 @@ public class AdColonyPlugin extends CordovaPlugin implements AdColonyAdListener,
 	public void onAdColonyAdAttemptFinished( AdColonyAd ad )
 	{
 		_isPreparingVideoAd = false;
-		if (ad.shown()) {
-			// TODO: Should return the zone ID here
-			_videoAdCallbackContext.success();
-		} else {
-			_videoAdCallbackContext.error("Video ad not shown");
+		try {
+			Log.i(TAG, "onAdColonyAdAttemptFinished");
+			JSONObject json = new JSONObject();
+			// json.put("zoneId", ad.zoneId);
+
+			if (ad.shown()) {
+				// TODO: Should return the zone ID here
+				this.fireEvent("adcompleted", json);
+			} else if (ad.notShown()) {
+				_videoAdCallbackContext.error("Video ad not shown");
+			} else if (ad.noFill()) {
+				_videoAdCallbackContext.error("Video ad not filled");
+			} else if (ad.canceled()) {
+				_videoAdCallbackContext.error("Video ad canceled");
+			} else {
+				_videoAdCallbackContext.error("Video ad skipped");
+			}
+		}
+		catch (JSONException e) {
+			_videoAdCallbackContext.error(e.getMessage());
+			System.out.println("Error: "+ e.getMessage());
 		}
 	}
 
@@ -208,14 +224,18 @@ public class AdColonyPlugin extends CordovaPlugin implements AdColonyAdListener,
 	{
 		try {
 			JSONObject json = new JSONObject();
-			// TODO: Should return the zone ID here
-			// json.put("zoneId", zoneId);
+			// json.put("zoneId", ad.zoneId);
 
+			// TODO: Should return the zone ID here
+			_videoAdCallbackContext.success();
+
+			// TODO: Should return the zone ID here
 			Log.i(TAG, "onAdColonyAdStarted");
 			this.fireEvent("adstarted", json);
 		}
-		catch (Exception e) {
-			System.out.println("Error: "+ e);
+		catch (JSONException e) {
+			_videoAdCallbackContext.error(e.getMessage());
+			System.out.println("Error: "+ e.getMessage());
 		}
 	}
 
@@ -239,7 +259,7 @@ public class AdColonyPlugin extends CordovaPlugin implements AdColonyAdListener,
 			this.fireEvent("availabilitychange", json);
 		}
 		catch (Exception e) {
-			System.out.println("Error: "+ e);
+			System.out.println("Error: "+ e.getMessage());
 		}
 	}
 
@@ -254,6 +274,7 @@ public class AdColonyPlugin extends CordovaPlugin implements AdColonyAdListener,
 	 */
 	public void onAdColonyV4VCReward( AdColonyV4VCReward reward )
 	{
+		// TODO: Respond with reward of zero?
 		if (!reward.success()) return;
 
 		try {
@@ -265,7 +286,7 @@ public class AdColonyPlugin extends CordovaPlugin implements AdColonyAdListener,
 			this.fireEvent("v4vcreward", json);
 		}
 		catch (Exception e) {
-			System.out.println("Error: "+ e);
+			System.out.println("Error: "+ e.getMessage());
 		}
 	}
 
