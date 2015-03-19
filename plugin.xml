@@ -57,7 +57,10 @@
 		<source-file src="src/ios/AdColonyPlugin.m" />
 
 		<framework src="src/ios/AdColony.framework" custom="true"/>
-		<framework src="AdSupport.framework" />
+		<framework src="AudioToolbox.framework" weak="true" />
+		<framework src="AdSupport.framework" weak="true" />
+		<framework src="AVFoundation.framework"/>
+		<framework src="CFNetwork.framework"/>
 		<framework src="CoreGraphics.framework" />
 		<framework src="CoreMedia.framework" />
 		<framework src="CoreTelephony.framework" />
@@ -68,10 +71,10 @@
 		<framework src="MediaPlayer.framework" />
 		<framework src="MessageUI.framework" />
 		<framework src="QuartzCore.framework" />
-		<framework src="Social.framework" weak="true"/>
 		<framework src="StoreKit.framework"/>
 		<framework src="SystemConfiguration.framework" />
 		<framework src="UIKit.framework" />
+		<framework src="WebKit.framework" />
 	</platform>
 
 </plugin>
