@@ -3,7 +3,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	id="com.affinity.cordova.adcolony"
-	version="1.0.0">
+	version="1.0.1">
 
 	<name>AdColony</name>
 	<description>Cordova/PhoneGap Plugin for AdColony</description>
@@ -11,8 +11,8 @@
 	<license>MIT</license>
 
 	<keywords>adcolony,affinity,ad,admob,iad,mopub,audience</keywords>
-	<repo>https://github.com/gabecoyne/cordova-adcolony-plugin.git</repo>
-	<issue>https://github.com/gabecoyne/cordova-adcolony-plugin/issues</issue>
+	<repo>https://github.com/affinityis/cordova-adcolony-plugin.git</repo>
+	<issue>https://github.com/affinityis/cordova-adcolony-plugin/issues</issue>
 
 	<engines>
 		<engine name="cordova" version=">=3.5" />
