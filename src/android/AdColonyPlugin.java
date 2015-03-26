@@ -56,8 +56,8 @@ public class AdColonyPlugin extends CordovaPlugin implements AdColonyAdListener,
 
 	private CallbackContext _videoAdCallbackContext;
 	private CallbackContext _nativeAdCallbackContext;
-	private boolean _isPreparingVideoAd;
-	private boolean _hasInitialized;
+	private boolean _isPreparingVideoAd = false;
+	private boolean _hasInitialized = false;
 
 	@Override
 	public boolean execute(String action, JSONArray inputs, CallbackContext callbackContext) throws JSONException
@@ -126,17 +126,17 @@ public class AdColonyPlugin extends CordovaPlugin implements AdColonyAdListener,
 
 	private void execInitialize(JSONArray inputs, CallbackContext callbackContext) throws JSONException {
 		String optionString = "";
-		// try {
-		JSONObject options = inputs.getJSONObject(2);
-		String deviceId = options.getString("deviceId");
-		String customId = options.getString("customId");
-		if (deviceId != null) AdColony.setDeviceID( deviceId );
-		if (customId != null) AdColony.setCustomID( customId );
-		optionString = options.getString("optionString");
-		// }
-		// catch (JSONException exception) {
+		try {
+			JSONObject options = inputs.getJSONObject(2);
+			String deviceId = options.getString("deviceId");
+			String customId = options.getString("customId");
+			if (deviceId != null) AdColony.setDeviceID( deviceId );
+			if (customId != null) AdColony.setCustomID( customId );
+			optionString = options.getString("optionString");
+		}
+		catch (JSONException exception) {
 			// Do nothing
-		// }
+		}
 		String appId = inputs.getString(0);
 		String[] zoneIds = toStringArray(inputs.getJSONArray(1));
 		AdColony.configure( this.cordova.getActivity(), optionString, appId, zoneIds );
