@@ -8,13 +8,16 @@ Compatible with:
 
 ## NOTE: ##
 
-The repo location has changed.  Set your remote to git@github.com:affinityis/cordova-adcolony-plugin.git
+The repo location has changed.  Future-proof by pdating your remote:
+```
+git remote set-url origin git@github.com:affinityis/cordova-adcolony-plugin.git
+```
 
 ## How to use? ##
 
 If using with Cordova CLI:
 ```
-cordova plugin add https://github.com/gabecoyne/cordova-adcolony-plugin
+cordova plugin add https://github.com/affinityis/cordova-adcolony-plugin
 ```
 
 ## Quick Start Example Code ##
@@ -64,15 +67,15 @@ cancelAd();
 // For native ad (coming)
 createNativeAd(adId, success, fail);
 removeNativeAd(adId);
-setNativeAdClickArea(adId,x,y,w,h);
+setNativeAdClickArea(adId, x, y, w, h);
 ```
 
 ## Detailed Documentation ##
 
 The APIs, Events and Options are detailed documented.
 
-Read the detailed API Reference Documentation [English](https://github.com/gabecoyne/cordova-adcolony-plugin/wiki).
+Read the detailed API Reference Documentation [English](https://github.com/affinityis/cordova-adcolony-plugin/wiki).
 
 ## FAQ ##
 
-If encounter problem when using the plugin, please read the [FAQ](https://github.com/gabecoyne/cordova-adcolony-plugin/wiki/FAQ) first.
+If encounter problem when using the plugin, please read the [FAQ](https://github.com/affinityis/cordova-adcolony-plugin/wiki/FAQ) first.
