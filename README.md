@@ -8,7 +8,7 @@ Compatible with:
 
 ## NOTE: ##
 
-The repo location has changed.  Future-proof by pdating your remote:
+The repo location has changed.  Future-proof by updating your remote:
 ```
 git remote set-url origin git@github.com:affinityis/cordova-adcolony-plugin.git
 ```
