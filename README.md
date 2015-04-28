@@ -22,7 +22,7 @@ cordova plugin add https://github.com/affinityis/cordova-adcolony-plugin
 
 ## Quick Start Example Code ##
 
-Step 1: Prepare your AdColony App Id for your app on [AdColony's client site](https://clients.adcolony.com/login).
+**Step 1:** Prepare your AdColony App Id for your app on [AdColony's client site](https://clients.adcolony.com/login).
 
 ```javascript
 var config = {
@@ -46,12 +46,23 @@ AdColony.initialize(setup.app_id, setup.zone_ids, {
 });
 ```
 
-Step 2: Create a video ad with single line of javascript
+**Step 2:** Create a video ad with single line of javascript
 
 ```javascript
 AdColony.showVideoAd( zoneId );
 AdColony.showV4VCVideoAd( zoneId );
 ```
+
+**Step 3:** Listen events (if you need)
+
+In order to reward user after showing the V4VC video add this event listener:
+```javascript
+window.addEventListener('adcolony.v4vcreward', function(payload){});
+```
+
+To get status of video ad with the concrete zone id when it's changed add this event listener:
+```javascript
+window.addEventListener('adcolony.availabilitychange', function(payload){});
 
 ## Javascript API Overview ##
 
