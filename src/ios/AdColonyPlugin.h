@@ -46,6 +46,7 @@
 @property (nonatomic, copy) NSString *videoAdCallbackId;           /*!< The callback ID for video ads */
 @property (nonatomic, copy) NSString *nativeAdCallbackId;          /*!< The callback ID for native ads */
 @property (nonatomic) BOOL hasInitialized;
+@property (nonatomic) double previousSampleRate;
 
 // @interface AppDelegate (CDVParsePlugin)
 @end
