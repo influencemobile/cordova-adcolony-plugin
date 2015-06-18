@@ -8,6 +8,11 @@ Compatible with:
 
 ## NOTE: ##
 
+This particular fork has support for the AdColony 2.5.1 iOS SDK. It also has support for an issue whereby if you are
+using Web Audio, and this is at a different audio sample rate to the video that is played, when the advert completes,
+the audio in the app is all broken up. We capture the audio sample rate prior to launching the advert,
+and on completion, request this sample rate once again.
+
 The repo location has changed.  Future-proof by updating your remote:
 ```
 git remote set-url origin git@github.com:affinityis/cordova-adcolony-plugin.git

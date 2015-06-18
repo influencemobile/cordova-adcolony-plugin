@@ -26,6 +26,7 @@
  #import <Cordova/CDV.h>
  #import <objc/runtime.h>
  #import <objc/message.h>
+ #import <AVFoundation/AVAudioSession.h>
 
  @implementation AdColonyPlugin
 
@@ -66,6 +67,8 @@
     if ([AdColony videoAdCurrentlyRunning]) {
         [self sendPluginErrorToCallbackId:command.callbackId message:@"Ad currently playing"];
     } else {
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        self.previousSampleRate = session.sampleRate;
         NSString *zoneId = [command.arguments objectAtIndex:0];
         self.videoAdCallbackId = command.callbackId;
         [AdColony playVideoAdForZone:zoneId withDelegate:self];
@@ -81,6 +84,8 @@
     if ([AdColony videoAdCurrentlyRunning]) {
         [self sendPluginErrorToCallbackId:command.callbackId message:@"Ad currently playing"];
     } else {
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        self.previousSampleRate = session.sampleRate;
         NSString *zoneId = [command.arguments objectAtIndex:0];
         // TODO: Make pre/post popups optional
         self.videoAdCallbackId = command.callbackId;
@@ -276,6 +281,9 @@
  */
 - (void)onAdColonyAdAttemptFinished:(BOOL)shown inZone:(NSString *)zoneId
 {
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setPreferredSampleRate: self.previousSampleRate error: nil];
+    
     if (shown) {
         [self fireEvent:@"adcompleted" data:@{@"zoneId": zoneId}];
     } else {
